@@ -1,0 +1,32 @@
+@use './../base/custom' as *;
+
+.product-card {
+    font-size: 1rem;
+
+    &__img-box {
+        position: relative;
+    }
+
+    &__title {
+        font-size: 1.3125em;
+    }
+
+    &:hover {
+        &__title {
+            color: $secondary;
+        }
+    }
+
+    &__price {  
+        font-size: 1.3125em;
+        font-family: $font-family-secondary;
+        color: $secondary
+    }
+
+    &__price-origin {
+        font-size: 75%;
+        color: $gray-500;
+        text-decoration: line-through;
+    }
+
+}

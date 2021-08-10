@@ -1,0 +1,151 @@
+@use '../base/config' as *;
+
+@use '../layout/header';
+@use '../layout/footer';
+@use '../layout/navigation';
+
+@use '../components/badge';
+@use '../components/product-list';
+
+// Custom header
+.header-nav {
+    color: $gray-400 !important;
+    background-color: rgba($color: $gray-400, $alpha: 0.1) !important;
+
+    li a {
+        color: $gray-400 !important;
+
+        &:hover {
+            color: $secondary !important;
+        }
+    }
+
+    &__form {
+        color: inherit;
+
+        input {
+            color: inherit;
+
+            &:focus {
+                color: inherit;
+            }
+        }
+
+        button {
+            color: inherit;
+        }
+    }
+}
+
+.about {
+    background: url("../../image/Image\ Rudu/product.jpg") no-repeat top left -17% / 30%;
+    padding: 4.75rem;
+}
+
+.text-heading {
+    font-size: 1.3125rem;
+    text-transform: uppercase;
+}
+
+.bg-image1 {
+    background: url("./../../image/Image\ Rudu/wine-63931_12802-1240x829.jpg") no-repeat center / cover;
+}
+.product {
+    font-size: 0.35rem;
+    padding-bottom: calc(30% + 7.25rem);
+    
+    @include media-breakpoint-up(sm) {
+        font-size: 0.6em;
+    }
+    
+    @include media-breakpoint-up(md) {
+        font-size: 0.75em;
+    }
+    
+    @include media-breakpoint-up(lg) {
+        font-size: 1rem;
+    }
+
+    &__box {
+        position: relative;
+        top: 50%;
+        padding: 2rem;
+        background: $white;
+
+        @include media-breakpoint-up (md) {
+            padding: 4rem;
+        }
+        
+        @include media-breakpoint-up (lg) {
+            padding: 6rem;
+        }
+    }
+    
+    &__image-box {
+        position: relative;
+    }
+
+    &__heading {
+        font-size: 1.5625em;
+    }
+
+    &__desc {
+        font-size: 0.8725rem;
+
+        @include media-breakpoint-down(md) {
+            display: none;
+        }
+    }
+}
+
+.price {
+    color: $secondary;
+    font-family: $font-family-secondary;
+    font-size: 2.125em;
+}
+
+.time-down {
+    color: $secondary;
+    font-family: $font-family-secondary;
+    text-align: center;
+    
+    &__box {
+        padding: 0.5em;
+        // border: 1px solid $secondary;
+    }
+    
+    &__number {
+        font-size: 2.125em;
+        margin-bottom: 0.25em;
+    }
+    
+    &__unit { 
+        font-size: 0.875em;
+        text-transform: uppercase;
+        margin: 0.25em;
+    }
+}
+
+.image-list {
+    padding: 5rem 0;
+}
+
+.image-item {
+    width: 100%;
+    padding-top: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.client {
+    font-size: 0.875rem;
+
+    &__trichdan {
+
+    }
+
+    &__inf {
+        
+    }
+}

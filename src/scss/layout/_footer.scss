@@ -1,0 +1,91 @@
+@use  '../base/custom' as *;
+
+.footer {
+    font-size: 0.75rem;
+
+    a {
+        color: $gray-600;
+
+        &:hover {
+            color: $secondary;
+            text-decoration: underline;
+        }
+    }
+
+    p {
+        margin-bottom: 0.25rem;
+    }
+    
+    &__logo-box {
+        margin: 0 auto;
+        width: 9rem;
+        max-width: 100%;
+        
+        @include media-breakpoint-up(md) {
+            width: 13rem;
+        }
+        
+        @include media-breakpoint-up(lg) {
+            width: 19rem;
+        }
+    }
+    
+    &__inf-box {
+        margin-bottom: 0.75rem;
+    }
+    
+    &__inf-heading {
+        font-size: 1.125rem;
+        text-transform: uppercase;
+    }
+
+    &__link {
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+
+    &__desc {
+        font-size: 0.875rem;
+    }
+
+    &__email {
+
+    }
+
+    &__social {
+        display: flex;
+        justify-content: space-between;
+
+        margin-top: 16px;
+
+        font-size: 1.5rem;
+    }
+
+    &__copy-right {
+        border-top: 1px solid $gray-400;
+        padding: 0.5rem 0;
+    }
+
+    &__payment {
+        display: flex;
+        justify-content: space-between;
+
+        &-image {
+            max-height: 2rem;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            flex-basis: 20%;
+        }
+
+        img {
+            height: 100%;
+            filter: grayscale(120);
+            transition: all 0.3s ease-in-out;
+
+            &:hover {
+                filter: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,83 @@
+// MY THEME COLOR 
+$yellow-light: #e6ae48;
+
+// MY FONT 
+$font-family-primary: 'Times New Roman', Times, serif;
+$font-family-secondary: 'UTM Caviar', sans-serif;
+$font-weight: (
+    'regular': 500,
+    'medium': 600,
+    'bold': 700
+);
+
+
+// WHITE AND BLACK 
+$white:    #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black:    #000;
+// GREEN COLOR 
+$green:   #198754;
+$green-100: tint-color($green, 80%);
+$green-200: tint-color($green, 60%);
+$green-300: tint-color($green, 40%);
+$green-400: tint-color($green, 20%);
+$green-500: $green;
+$green-600: shade-color($green, 20%);
+$green-700: shade-color($green, 40%);
+$green-800: shade-color($green, 60%);
+$green-900: shade-color($green, 80%);
+// RED COLOR 
+$red:     #dc3545;
+$red-100: tint-color($red, 80%);
+$red-200: tint-color($red, 60%);
+$red-300: tint-color($red, 40%);
+$red-400: tint-color($red, 20%);
+$red-500: $red;
+$red-600: shade-color($red, 20%);
+$red-700: shade-color($red, 40%);
+$red-800: shade-color($red, 60%);
+$red-900: shade-color($red, 80%);
+
+// PRIMARY & SECONDARY COLOR 
+$primary:       $black;
+$secondary:     $yellow-light;
+
+// NAVBAR 
+$navbar-padding-y:                  0;
+// NAVBAR TOGGLER
+$navbar-toggler-focus-width:        1px $secondary;
+// NAVBAR THEME COLOR 
+$navbar-dark-color:                 rgba($white, .55);
+$navbar-dark-hover-color:           rgba($secondary, 1);
+$navbar-dark-active-color:          rgba($secondary, 1);
+$navbar-dark-disabled-color:        rgba($white, .25);
+$navbar-dark-toggler-icon-bg:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$navbar-dark-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+$navbar-dark-toggler-border-color:  rgba($white, .1);
+
+$navbar-light-color:                rgba($black, .6);
+$navbar-light-hover-color:          rgba($secondary, 1);
+$navbar-light-active-color:         rgba($secondary, 1);
+$navbar-light-disabled-color:       rgba($black, .3);
+$navbar-light-toggler-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$navbar-light-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+$navbar-light-toggler-border-color: rgba($black, .1);
+
+$navbar-light-brand-color:                $navbar-light-active-color;
+$navbar-light-brand-hover-color:          $navbar-light-active-color;
+$navbar-dark-brand-color:                 $navbar-dark-active-color;
+$navbar-dark-brand-hover-color:           $navbar-dark-active-color;
+
+// FORM 
+$input-placeholder-color:               $gray-400;
+
+// BTN 
+$btn-font-size:               0.875rem;
+
+@import '../../../node_modules/bootstrap/scss/bootstrap.scss';

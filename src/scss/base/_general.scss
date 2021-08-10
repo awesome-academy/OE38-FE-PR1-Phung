@@ -1,0 +1,21 @@
+@use '_custom.scss' as *;
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    color: $primary;
+    background-color: white;
+    font-family: $font-family-primary;
+    font-size: 100%;
+    font-weight: map-get($map: $font-weight, $key: regular);
+    line-height: 1.5;
+}

@@ -1,0 +1,76 @@
+@use '../base/custom' as *;
+
+.header-nav {
+
+    &__list {
+
+        li {
+            display: block;
+            padding: 0.1825rem;
+            text-align: center;
+            
+            @include media-breakpoint-down(lg) {
+                width: 100%;
+            }
+
+            a {
+                display: block;
+                font-size: 0.75rem;
+                font-weight: 700;
+    
+                @include media-breakpoint-down(lg) {
+                }
+                
+                &:hover:not(.active) {
+                    color: $secondary;
+                    
+                    span {
+                        border-bottom: 1px solid $secondary;
+                    }
+                }
+            }
+        }
+
+
+        .seperate {
+
+            @include media-breakpoint-down(lg) {
+                display: none;
+            }
+        }
+    }
+
+    &__form {
+        padding-right: 1rem;
+        padding-left: 1rem;
+
+        @include media-breakpoint-down(lg) {
+            margin-bottom: 2rem;
+        }
+
+        input {
+            border: none;
+            background-color: transparent;
+            
+            @include media-breakpoint-down(lg) {
+                box-shadow: 0 0 0.2rem $gray-400;
+            }
+
+            &:focus {
+                background-color: rgba($color: #000000, $alpha: 0.2);
+                box-shadow: 0 0 0.25rem $gray-400;
+            }
+        }
+
+        button {
+
+            &:active {
+                color: $secondary;
+            }
+
+            &:focus {
+                box-shadow: 0 0 0.25rem $gray-400;
+            }
+        }
+    }
+}
