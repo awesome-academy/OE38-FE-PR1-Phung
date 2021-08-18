@@ -1,0 +1,43 @@
+{
+  "name": "oe38-fe-pr1-phung-1",
+  "version": "1.0.0",
+  "description": "Create web wine house",
+  "main": "index.js",
+  "scripts": {
+    "compile:pug": "pug -w src/pug/pages -o ./ -P",
+    "compile:scss": "sass --watch src/scss:assets/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phungvu2012/OE38-FE-PR1-Phung-1.git"
+  },
+  "keywords": [
+    "Pug",
+    "Sass",
+    "Bootstrap",
+    "Bootstrap",
+    "5",
+    "with",
+    "Sass"
+  ],
+  "author": "Phung Vu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phungvu2012/OE38-FE-PR1-Phung-1/issues"
+  },
+  "homepage": "https://github.com/phungvu2012/OE38-FE-PR1-Phung-1#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.3.1",
+    "browser-sync": "^2.27.5",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-pug": "^5.0.0",
+    "gulp-sass": "^5.0.0",
+    "postcss-cli": "^8.3.1",
+    "sass": "^1.38.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "bootstrap": "^5.1.0"
+  }
+}

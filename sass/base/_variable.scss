@@ -1,0 +1,50 @@
+// MY COLOR THEME
+$orange-light: #e6ae48;
+
+// MY FONT 
+$font-family-primary: 'Times New Roman', Times, serif;
+$font-family-secondary: 'UTM Caviar', sans-serif;
+$font-family-third: 'Roboto', sans-serif;
+
+$font-weight: (
+  'regular': 500,
+  'medium': 600,
+  'bold': 700
+);
+
+// WHITE, GRAY AND BLACK COLOR 
+$white: #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000;
+
+// COLOR 
+$blue: #0d6efd;
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink: #d63384;
+$red: #dc3545;
+$orange: #fd7e14;
+$yellow: #ffc107;
+$green: #198754;
+$teal: #20c997;
+$cyan: #0dcaf0;
+
+// PRIMARY COLOR AND SECONDARY COLOR 
+$primary: $black;
+$secondary: $orange-light;
+
+// LINK COLOR
+$link-color: $primary;
+$link-hover-color: $secondary;
+
+//COMPONENT COLOR
+$component-active-color: $white;
+$component-active-bg: $secondary;
