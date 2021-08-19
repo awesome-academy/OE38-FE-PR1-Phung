@@ -1,0 +1,40 @@
+@use 'variable';
+
+@forward '../../node_modules/bootstrap/scss/bootstrap.scss' with (
+  // PRIMARY COLOR AND SECONDARY COLOR
+  $primary: variable.$primary,
+  $secondary: variable.$secondary,
+
+  // WHITE, GRAY AND BLACK COLOR 
+  $white: variable.$white,
+  $gray-100: variable.$gray-100,
+  $gray-200: variable.$gray-200,
+  $gray-300: variable.$gray-300,
+  $gray-400: variable.$gray-400,
+  $gray-500: variable.$gray-500,
+  $gray-600: variable.$gray-600,
+  $gray-700: variable.$gray-700,
+  $gray-800: variable.$gray-800,
+  $gray-900: variable.$gray-900,
+  $black:    variable.$black,
+  
+  // COLOR 
+  $blue: variable.$blue,
+  $indigo: variable.$indigo,
+  $purple: variable.$purple,
+  $pink: variable.$pink,
+  $red: variable.$red,
+  $orange: variable.$orange,
+  $yellow: variable.$yellow,
+  $green: variable.$green,
+  $teal: variable.$teal,
+  $cyan: variable.$cyan,
+  
+  // LINK COLOR
+  $link-color: variable.$link-color,
+  $link-hover-color: variable.$link-hover-color,
+  
+  // COMPONENT COLOR
+  $component-active-color: variable.$component-active-color,
+  $component-active-bg: variable.$component-active-bg,
+);
