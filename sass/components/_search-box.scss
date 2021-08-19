@@ -1,0 +1,64 @@
+@use '../base/variable' as *;
+@use '../abstract/mixin' as mixin;
+@use '../base/custom' as bootstrap;
+
+.search-box {
+  position: relative;
+  border-radius: 0.5rem;
+  
+  color: inherit;
+  background-color: inherit;
+
+  font-size: 0.875rem;
+  overflow: hidden;
+
+  &:focus-within {
+    border-color: #f3d7a4;
+    box-shadow: mixin.box-shadow-lg($secondary);
+    
+      @include bootstrap.media-breakpoint-down(lg) {
+        box-shadow: mixin.box-shadow($secondary);
+      }
+  }
+
+  &__input {
+    width: 100%;
+
+    padding: 0.375rem 2.5rem 0.375rem 0.75rem;
+    border: none;
+    outline: none;
+    
+    color: inherit;
+    background-color: transparent;
+
+    
+    &::placeholder {
+      color: inherit;
+      opacity: 0.7;
+    }
+  }
+
+  &__btn {
+    position: absolute;
+    top: 50%;
+    right: 0.45rem;
+    transform: translateY(-50%);
+    
+    @include mixin.flexCenter;
+    
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+
+    color: inherit;
+    background-color: transparent;
+    border-color: transparent;
+    
+    cursor: pointer;
+
+    &:active, &:focus {
+      background-color: rgba($color:$secondary, $alpha: 0.6);
+      color: $white;
+    }
+  }
+}

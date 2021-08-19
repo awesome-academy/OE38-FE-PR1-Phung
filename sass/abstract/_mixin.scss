@@ -1,0 +1,21 @@
+@mixin flexCenter() {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@function box-shadow($color) {
+  @return 0 .5rem 1rem rgba($color, .15);
+}
+
+@function box-shadow-sm($color) {
+  @return 0 .125rem .25rem rgba($color, .075);
+}
+
+@function box-shadow-lg($color) {
+  @return 0 1rem 3rem rgba($color, .175);
+}
+
+@function box-shadow-inset($color) {
+  @return inset 0 1px 2px rgba($color, .075);
+}

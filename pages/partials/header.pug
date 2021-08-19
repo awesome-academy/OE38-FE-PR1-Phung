@@ -1,0 +1,54 @@
+include ./../mixin/mixin
+//- Mixin Item Nav
+mixin headerNavItem(text, activeItem = '', link = '#', activePage = '')
+  li(class='nav-item')
+    if active != '' && activeItem === activePage
+      a(href='#' class='nav-link active px-3 px-lg-0' aria-current='page') 
+        span #{text}
+    else
+      a(href='#' class='nav-link px-3 px-lg-0')
+        span #{text}
+
+//- Mixin List Display On Mobile, Tablet
+mixin listDisplayOnMobile(listItem, activePage = '')
+  ul(class='header-nav__list d-flex d-lg-none navbar-nav align-items-center border-gray--down-lg')
+    each item in listItem
+      +headerNavItem(item.text, item.active, item.link, activePage)
+
+//- Mixin List Display On Mobile, Tablet && Desktop 
+mixin listMain(listItem, activePage = '')
+  ul(class='header-nav__list navbar-nav align-items-center border-gray--down-lg')
+    each item, index in listItem
+      +headerNavItem(item.text, item.active, item.link, activePage)
+      if index < listItem.length - 1
+        span(class = 'seperate seperate--down-lg-none')
+
+//- Mixin Navigation Header 
+mixin navContent(listOfLists, listShow = 1, activePage = '', urlImageLogo = '', urlLogo = '/')
+  div.container-lg
+      //- Logo
+      a(href=`${ urlLogo }` class='header-nav__logo navbar-brand')
+        img(src=`${ urlImageLogo }` alt='logo wine house image' class="img-fluid")
+      //- Toggler Btn 
+      button(type='button' class='navbar-toggler me-auto' data-bs-toggle='collapse' data-bs-target='#navbarHeader' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+        span(class='navbar-toggler-icon')
+      //- Collapse
+      div(class='header-nav__list-box collapse navbar-collapse justify-content-between' id='navbarHeader')
+        //- Header navigation
+        each list, index in listOfLists
+          if index === listShow - 1
+            +listMain(list, activePage)
+          else
+            +listDisplayOnMobile(list, activePage)
+        //- Header navigation
+        div.d-none.d-lg-block
+          +searchBox('', 'Tìm kiếm ở đây ...')
+          
+//- HEADER SITE
+mixin headerSite(active = '', isTransparent="false")
+  if isTransparent === true
+    nav(class='header-nav header-nav--opacity navbar navbar-expand-lg navbar-light fixed-top scroll')
+      +navContent(dtNavigationHeader, dtMainListOrder, active, dtLogoImageUrl, dtLogoUrl)
+  else
+    nav(class='header-nav navbar navbar-expand-lg navbar-light fixed-top scroll')
+      +navContent(dtNavigationHeader, dtMainListOrder, active, dtLogoImageUrl, dtLogoUrl)

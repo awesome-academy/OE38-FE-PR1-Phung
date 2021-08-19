@@ -37,4 +37,31 @@
   // COMPONENT COLOR
   $component-active-color: variable.$component-active-color,
   $component-active-bg: variable.$component-active-bg,
+
+  // NAVBAR
+  $navbar-padding-y: variable.$navbar-padding-y,
+  // NAVBAR TOGGLER
+  $navbar-toggler-focus-width: variable.$navbar-toggler-focus-width,
+  // NAVBAR THEME COLOR 
+  $navbar-dark-color: variable.$navbar-dark-color,
+  $navbar-dark-hover-color: variable.$navbar-dark-hover-color,
+  $navbar-dark-active-color: variable.$navbar-dark-active-color,
+  $navbar-dark-disabled-color: variable.$navbar-dark-disabled-color,
+  $navbar-dark-toggler-icon-bg: variable.$navbar-dark-toggler-icon-bg,
+  $navbar-dark-toggler-border-color: variable.$navbar-dark-toggler-border-color,
+  //Navbar theme dark
+  $navbar-light-color: variable.$navbar-light-color,
+  $navbar-light-hover-color: variable.$navbar-light-hover-color,
+  $navbar-light-active-color: variable.$navbar-light-active-color,
+  $navbar-light-disabled-color: variable.$navbar-light-disabled-color,
+  $navbar-light-toggler-icon-bg: variable.$navbar-light-toggler-icon-bg,
+  $navbar-light-toggler-border-color: variable.$navbar-light-toggler-border-color,
+  //Navbar theme light
+  $navbar-light-brand-color: variable.$navbar-light-brand-color,
+  $navbar-light-brand-hover-color: variable.$navbar-light-brand-hover-color,
+  $navbar-dark-brand-color: variable.$navbar-dark-brand-color,
+  $navbar-dark-brand-hover-color: variable.$navbar-dark-brand-hover-color,
+
+  //FORM CONTROL
+  $input-focus-box-shadow: variable.$input-focus-box-shadow,
 );

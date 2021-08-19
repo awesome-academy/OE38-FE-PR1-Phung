@@ -1,0 +1,60 @@
+//- Mixin Nav Item Main 
+mixin createNavItem(text, activeItem = '', link = '#', subMenuOfItem = [], imgSubMenuUrl = '', activePage = '')
+  li(class='nav-item')
+    //- Nav Item Active && Dropdown
+    if activeItem != '' && activeItem === activePage
+      if subMenuOfItem && subMenuOfItem.length > 0
+        a(href=`${ link }` class='nav-link active my-dropdown' aria-current='page') #{ text }
+        //- Sub Menu
+        +subMenu(subMenuOfItem, imgSubMenuUrl)
+      else
+        a(href=`${ link }` class='nav-link active' aria-current='page') #{ text }
+    else
+      if subMenuOfItem && subMenuOfItem.length > 0
+        a(href=`${ link }` class='nav-link my-dropdown') #{ text }
+        //- Sub Menu
+        +subMenu(subMenuOfItem, imgSubMenuUrl)
+      else
+        a(href=`${ link }` class='nav-link') #{ text }
+
+//- Mixin Sub Menu
+mixin subMenu(listOfSubLists, imgSubMenuUrl = '')
+  ul(class='sub-menu')
+    .row.justify-content-evenly
+      //- Sub Menu List 
+      each list in listOfSubLists
+        .col
+          ul.ps-0
+            //- Product Sub Mne List 
+            each item, index in list
+              if index === 0
+                li
+                  h4.sub-menu__heading #{ item }
+              else
+                li
+                  a(href=`${ item.link }`) #{ item.text }
+      //- Image Sub Menu 
+      .col-3
+        img(src=`${ imgSubMenuUrl }`, alt='intro image' class='img-fluid')
+
+//- Mixin Nav Content 
+mixin navbarSiteContent(list, activePage = '', urlImageLogo = '', urlLogo = '')
+  div.container.flex-wrap.align-items-stretch
+    //- Logo
+    a(class='main-nav__logo navbar-brand mx-auto col-12' href=`${ urlLogo }`)
+      img(src=`${ urlImageLogo }`, alt='logo' class='img-fluid')
+    //- Toggler
+    button(type='button' class='navbar-toggler d-none' data-bs-toggle='collapse' data-bs-target='#navbarMain' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+      span(class='navbar-toggler-icon')
+    //- Nav List
+    div(class='collapse navbar-collapse align-items-stretch' id='navbarMain')
+      ul(class='main-nav__list navbar-nav')
+
+        each item in list
+          +createNavItem(item.text, item.active, item.link, item.submenu, item.subMenuImage, activePage)
+
+//- NAVBARSITE
+mixin navbarSite(active = '')
+  //- Main Menu
+  nav(class='main-nav navbar navbar-expand navbar-dark bg-primary ')
+    +navbarSiteContent(dtNavbarArr, active, dtLogoImageNavUrl, dtLogoNavUrl)

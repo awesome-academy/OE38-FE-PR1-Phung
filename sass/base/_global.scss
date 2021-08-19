@@ -1,0 +1,54 @@
+@use 'variable' as *;
+@use 'custom' as bootstrap;
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    color: $primary;
+    background-color: white;
+    font-family: $font-family-primary;
+    font-size: 100%;
+    font-weight: map-get($map: $font-weight, $key: regular);
+    line-height: 1.5;
+}
+
+.bg-light-tr {
+  background-color: #fff;
+  opacity: 0.7;
+}
+
+.seperate {
+  margin-right: 0.25em;
+  margin-left: 0.25em;
+
+  &::before{
+    content: '-';
+  }
+  
+  &--down-lg-none {
+    @include bootstrap.media-breakpoint-down(lg) {
+      display: none;
+    }
+  }
+}
+
+.border-gray--down-lg {
+  border-bottom: 1px solid transparent !important;
+  
+  @include bootstrap.media-breakpoint-down(lg) {
+    border-bottom: 1px solid $gray-300 !important;
+  }
+}
+
+.bg-white-opacity {
+  background-color: rgba($color: $white, $alpha: 0.7);
+}
