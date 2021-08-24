@@ -1,0 +1,104 @@
+@use './../base/variable' as *;
+@use './../abstract/mixin' as mixin;
+@use './../base/custom' as bootstrap;
+
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+
+    font-size: 1rem;
+    text-align: center;
+
+    &__img-box {
+        position: relative;
+        display: block;
+        text-decoration: none;
+        text-align: center;
+
+        &:hover .product-card__personal{
+            visibility: visible;
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    &__personal {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        display: inline-flex;
+        justify-content: space-evenly;
+
+        background-color: $black;
+        transform: translateY(100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+
+        &-item {
+          cursor: pointer;
+            color: $gray-500;
+
+            &:hover {
+                color: $secondary;
+            }
+
+            &:hover .product-card__personal-icon {
+                color: $secondary;
+            }
+        }
+
+        &-icon {
+            color: $white;
+        }
+    }
+
+    &__body {
+        padding-top: 1rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+        
+    &__link {
+        display: block;
+        text-decoration: none;
+
+        &:hover {
+            color: $secondary;
+        }
+    }
+
+    &__title {
+        text-transform: uppercase;
+        font-size: 1rem;
+
+        @include bootstrap.media-breakpoint-down(md) {
+          font-size: 1.25rem;
+        }
+    }
+
+    &__price {  
+        font-size: 1.3125rem;
+        font-family: $font-family-secondary;
+        color: $secondary
+    }
+
+    &__price-origin {
+        font-size: 75%;
+        color: $gray-500;
+        text-decoration: line-through;
+    }
+
+    &__desc {
+        display: none;
+        font-size: 0.8125rem;
+        color: $gray-600;
+    }
+
+    &__form {
+        padding-bottom: 1rem;
+    }
+}

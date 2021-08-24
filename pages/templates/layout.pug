@@ -15,6 +15,8 @@ html(lang="en")
     //- BLOCK META TAG
     block meta
 
+    //- Favicon 
+    link(rel="shortcut icon", href="/assets/image/Image Rudu/logo2.png", type="image/x-icon")
     //- Google Font 
     link(rel="preconnect" href="https://fonts.googleapis.com")
     link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
@@ -30,12 +32,13 @@ html(lang="en")
 
   body
     //- BLOCK HEADER SITE
-    header
-      block header
-        +headerSite('signIn')
+    block header
+      header 
+        +headerSite('home')
 
     //- BLOCK BANNER 
     block banner
+      div(class = 'banner-empty')
       
     //- BLOCK NAVBAR SITE 
     block navigation
@@ -49,9 +52,9 @@ html(lang="en")
             +searchBox('', 'Tìm kiếm ở đây ...')
 
     //- BLOCK CONTENT SITE 
-    main
-      block main
-        
+    block main
+      main
+        h1 Welcome to Wine House
 
     //- BLOCK FOOTER SITE
     footer

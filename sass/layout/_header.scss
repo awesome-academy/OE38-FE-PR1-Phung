@@ -82,7 +82,7 @@
   }
   
   &--opacity &__list-box {
-    color: $gray-500;
+    color: $white;
     background-color: initial;
     
     @include bootstrap.media-breakpoint-down(lg) {

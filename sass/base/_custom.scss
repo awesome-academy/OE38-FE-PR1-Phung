@@ -1,4 +1,5 @@
 @use 'variable';
+@use './../abstract/mixin' as mixin;
 
 @forward '../../node_modules/bootstrap/scss/bootstrap.scss' with (
   // PRIMARY COLOR AND SECONDARY COLOR
@@ -65,3 +66,25 @@
   //FORM CONTROL
   $input-focus-box-shadow: variable.$input-focus-box-shadow,
 );
+
+.btn-primary:hover{
+  background-color: variable.$secondary;
+  border-color: variable.$secondary;
+}
+
+.btn-primary:active, .btn-primary:focus { 
+  background-color: variable.$secondary;
+  border-color: variable.$secondary;
+  box-shadow: mixin.box-shadow-lg(variable.$secondary);
+}
+
+.indicators-circle[data-bs-target]{
+  display: inline-block;
+
+  width: 0.75rem;
+  height: 0.75rem;
+  border: none;
+  border-radius: 50%;
+
+  background: #ddd;
+}

@@ -1,0 +1,20 @@
+@use '../base/variable' as *;
+@use '../abstract/mixin' as mixin;
+@use '../base/custom' as bootstrap;
+
+.banner-empty {
+  margin-top: 2.375rem;
+  
+  @include bootstrap.media-breakpoint-down(lg) {
+    margin-top: 3.5rem;
+  }
+}
+
+.banner-image {
+  width: 100%;
+  padding-top: 34.5%;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}

@@ -52,3 +52,86 @@ body {
 .bg-white-opacity {
   background-color: rgba($color: $white, $alpha: 0.7);
 }
+
+.text-heading {
+  text-transform: uppercase;
+  font-size: 1.3125rem;
+}
+
+.price {
+  color: $secondary;
+
+  font-family: $font-family-secondary;
+  font-size: 2.125rem;
+}
+
+@include bootstrap.media-breakpoint-up(lg) {
+  .py-lg-6rem {
+    padding-top: 6rem !important;
+    padding-bottom: 6rem !important;
+  }
+
+  .px-lg-6rem {
+    padding-right: 6rem !important;
+    padding-left: 6rem !important;
+  }
+
+  .w-lg-auto {
+    width: auto !important;
+  }
+}
+
+.link-image {
+  position: relative;
+  display: block;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  
+    background-color: $gray-300;
+    clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+    
+    visibility: hidden;
+    opacity: 0;
+    transform: translate(50%, 50%);
+
+    transition: all 0.3s ease-in-out;
+  }
+  
+  &::after {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  
+    background: url('../assets/image/Image Rudu/hoverLinkImage.png') no-repeat center/ 15%;
+    
+    visibility: hidden;
+    opacity: 0;
+    transform: translate(50%, 50%);
+
+    transition: all 0.3s ease-in-out;
+  }
+  
+  &:hover::before {
+    visibility: visible;
+    opacity: 0.4;
+    transform: translate(0%, 0%);
+  }
+
+  &:hover::after {
+    visibility: visible;
+    opacity: 0.8;
+    transform: translate(0%, 0%);
+  }
+}
