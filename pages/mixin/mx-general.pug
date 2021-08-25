@@ -67,16 +67,15 @@ mixin btnAddToCart(active, id)
 //- Product Card 
 mixin productCard(name, price, priceOrigin, badgeName = '', urlImage = '#', urlProduct = '#')
   div(class='product-card card text-center shadow-sm')
-    //- Img box 
-    div(class='product-card__img-box')
-      //- Image
+    //- Img box
+    div.product-card__img-box
       a(href=`${ urlProduct }` class='link-image')
-        img(src=`${ urlImage }` alt=`${ name }` class='img-fluid')
-        //- Badge
-        +badge(badgeName)
+        div(class='product-card__image' style=`background-image: url('${ urlImage }')`)
+          //- Badge
+          +badge(badgeName)
       //- Personal
       div.product-card__personal
-        span(class='product-card__personal-item')
+        span(class='product-card__personal-lovely-item')
           i(class='product-card__personal-icon fas fa-heart me-1')
           span Yêu thích
         span(class='product-card__personal-item')
@@ -91,8 +90,48 @@ mixin productCard(name, price, priceOrigin, badgeName = '', urlImage = '#', urlP
           sup đ
           span(class='product-card__price-origin') - #{ priceOrigin } 
             sup đ
-      //- Btn add cart 
+      //- Btn add cart
       +btnAddToCart('#')
+
+//- Product Card Convert Row & Column
+mixin productCardConvert(name, price, priceOrigin, desc, badgeName = '', urlImage = '#', urlProduct = '#')
+  div(class='product-card card text-center shadow-sm')
+    //- Img box 
+    div.product-card__img-box
+      a(href=`${ urlProduct }` class='link-image')
+        div(class='product-card__image' style=`background-image: url('${ urlImage }')`)
+          //- Badge
+          +badge(badgeName)
+      //- Personal
+      div.product-card__personal
+        span(class='product-card__personal-lovely-item')
+          i(class='product-card__personal-icon fas fa-heart me-1')
+          span Yêu thích
+        span(class='product-card__personal-item')
+          i(class='product-card__personal-icon fas fa-signal me-1')
+          span So sánh
+      //- Card Body
+    .product-card__body
+      //- Info
+      a(href=`${ urlProduct }` class='product-card__link')
+        h4(class='product-card__title') #{ name }
+        p(class='product-card__price') #{ price }
+          sup đ
+          span(class='product-card__price-origin') - #{ priceOrigin } 
+            sup đ
+      //- Desc 
+      p(class='product-card__desc') #{ desc }
+      //- Btn add cart 
+      .d-lg-inline-block
+        +btnAddToCart('#')
+      //- Personal Column
+      div.product-card__personal-column.mt-3
+        span(class='product-card__personal-column-lovely-item')
+          i(class='product-card__personal-column-icon fas fa-heart me-1')
+          span Yêu thích
+        span(class='product-card__personal-column-item')
+          i(class='product-card__personal-column-icon fas fa-signal me-1')
+          span So sánh
 
 //- Product Slide
 mixin productSlide(list, idSlide, theme = 'dark')

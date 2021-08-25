@@ -4,101 +4,159 @@
 
 
 .product-card {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    font-size: 1rem;
+  font-size: 1rem;
+  text-align: center;
+
+  &__img-box {
+    position: relative;
+
+     &:hover .product-card__personal{
+      visibility: visible;
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  &__image {
+    position: relative;
+    width: 100%;
+    padding-top: 124.25%;
+
+    display: block;
+    text-decoration: none;
     text-align: center;
 
-    &__img-box {
-        position: relative;
-        display: block;
-        text-decoration: none;
-        text-align: center;
+    background-color: $gray-300;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  // Personal
+  &__personal {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
-        &:hover .product-card__personal{
-            visibility: visible;
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-    
-    &__personal {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
+    display: inline-flex;
+    justify-content: space-evenly;
 
-        display: inline-flex;
-        justify-content: space-evenly;
+    background-color: $black;
+    transform: translateY(100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    z-index: 2;
 
-        background-color: $black;
-        transform: translateY(100%);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease-in-out;
-
-        &-item {
-          cursor: pointer;
-            color: $gray-500;
-
-            &:hover {
-                color: $secondary;
-            }
-
-            &:hover .product-card__personal-icon {
-                color: $secondary;
-            }
-        }
-
-        &-icon {
-            color: $white;
-        }
-    }
-
-    &__body {
-        padding-top: 1rem;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-    }
-        
-    &__link {
-        display: block;
-        text-decoration: none;
+    &-item {
+      cursor: pointer;
+        color: $gray-500;
 
         &:hover {
             color: $secondary;
         }
-    }
 
-    &__title {
-        text-transform: uppercase;
-        font-size: 1rem;
-
-        @include bootstrap.media-breakpoint-down(md) {
-          font-size: 1.25rem;
+        &:hover .product-card__personal-icon {
+            color: $secondary;
         }
     }
 
-    &__price {  
-        font-size: 1.3125rem;
-        font-family: $font-family-secondary;
-        color: $secondary
+    &-lovely-item {
+      @extend .product-card__personal-item;
+
+      &:hover * {
+        color: rgba($color: $pink, $alpha: 0.8) !important;
+      }
+
+      &.active {
+        color: rgba($color: $pink, $alpha: 1);
+      }
     }
 
-    &__price-origin {
-        font-size: 75%;
-        color: $gray-500;
-        text-decoration: line-through;
+    &-icon {
+        color: $white;
+    }
+  }
+
+  // Personal column 
+  &__personal-column {
+    display: none;
+    z-index: 2;
+  }
+
+  &__personal-column-item {
+    margin: 0 1rem;
+    cursor: pointer;
+
+    &:hover {
+        color: $secondary;
+    }
+  }
+
+  &__personal-column-lovely-item {
+    @extend .product-card__personal-column-item;
+
+    &:hover {
+      color: rgba($color: $pink, $alpha: 0.5);
     }
 
-    &__desc {
-        display: none;
-        font-size: 0.8125rem;
-        color: $gray-600;
+    &.active {
+      color: rgba($color: $pink, $alpha: 0.7);
     }
+  }
 
-    &__form {
-        padding-bottom: 1rem;
+
+  &__personal-column-icon {
+
+  }
+
+  &__body {
+    padding-top: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-bottom: 1rem;
+  }
+      
+  &__link {
+    display: block;
+    text-decoration: none;
+
+    &:hover {
+      color: $secondary;
     }
+  }
+
+  &__title {
+    text-transform: uppercase;
+    font-size: 1rem;
+
+    @include bootstrap.media-breakpoint-down(md) {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__price {  
+    font-size: 1.3125rem;
+    font-family: $font-family-secondary;
+    color: $secondary
+  }
+
+  &__price-origin {
+    font-size: 75%;
+    color: $gray-500;
+    text-decoration: line-through;
+  }
+
+  &__desc {
+    display: none;
+    font-size: 0.8125rem;
+    color: $gray-600;
+  }
+
+  &__form {
+    padding-bottom: 1rem;
+  }
 }

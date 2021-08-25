@@ -1,0 +1,161 @@
+//- Mixin Banner Product List Page
+mixin bannerProductList(urlImage)
+  .container
+    div(class='banner-product' style=`background-image: url('${ urlImage }')`)
+
+//- Mixin Category Horizon 
+mixin categoryHorizontal(productCategory, key)
+  section.d-lg-none.mb-4
+    .section-heading.mb-3
+      h2.text-heading--left.text-black.fs-6 Danh mục sản phẩm
+      img(src="/assets/image/Image Rudu/titleleft-dark.png")
+    .categoryHorizontal
+      each list in productCategory
+        +categoryHorizontalItem(list, key)
+//- Mixin Category Horizontal Item
+mixin categoryHorizontalItem(list, key)
+  if list && list.length > 0
+    h6 #{ list[0].title }
+    ul.categoryHorizontal__list
+
+      each item, index in list
+        if index !== 0
+          if item.active && item.active === key
+            li.categoryHorizontal__item.active
+              a(href=`${ item.link }`).categoryHorizontal__link #{ item.text } 
+                | (#{ item.numberOfProduct })
+          else
+            li.categoryHorizontal__item
+              a(href=`${ item.link }`).categoryHorizontal__link #{ item.text } 
+                | (#{ item.numberOfProduct })
+          //- Sub Item 
+          if item.subItem && item.subItem.length
+            +categoryHorizontalSubItem(item.subItem, key)
+//- Mixin Category Horizontal SubItem 
+mixin categoryHorizontalSubItem(subList, key)
+  each item in subList
+    if item.active && item.active === key
+      li.categoryHorizontal__item.active
+        a(href=`${ item.link }`).categoryHorizontal__link #{ item.text } 
+          | (#{ item.numberOfProduct })
+    else
+      li.categoryHorizontal__item
+        a(href=`${ item.link }`).categoryHorizontal__link #{ item.text } 
+          | (#{ item.numberOfProduct })
+    
+//- Mixin Category
+mixin productCategoryAside(productCategory, key)
+  section.category.mb-2
+    .section-heading.mb-3
+      h2.text-heading--left.text-black.fs-6 Danh mục sản phẩm
+      img(src="/assets/image/Image Rudu/titleleft-dark.png")
+    each list in productCategory
+      +asideProductList(list, key)
+
+//- Mixin Product Category List 
+mixin asideProductList(productCategory, key)
+  ul.my-list-group
+    each item, index in productCategory ? productCategory : [0]
+      if index === 0
+        h6 #{ item.title }
+      else
+        +asideProductItem(item.active, item.text, item.link, item.numberOfProduct, item.subItem, key)
+//- Mixin Product Category Item
+mixin asideProductItem(active, text, link, numberOfProduct, subItem, key)
+  if active === key
+    li.my-list-group__item.active
+      a(href=`${ link }` aria-current='true' class='my-list-group__link') 
+        | #{ text }
+        span 
+          | (#{ numberOfProduct })
+      +subProductCategory(subItem, key)
+  else
+    li.my-list-group__item
+      a(href=`${ link }` class='my-list-group__link') 
+        | #{ text }
+        | (#{ numberOfProduct })
+      +subProductCategory(subItem, key)
+//- Sub Category 
+mixin subProductCategory(subCategory, key)
+  if subCategory && subCategory.length > 0
+    ul
+      each item in subCategory
+        if item.active === key
+          li.my-list-group__item.active
+            a(href=`${ item.link }` aria-current='true' class='my-list-group__link') 
+              | #{ item.text }
+              | (#{ item.numberOfProduct })
+        else
+          li.my-list-group__item
+            a(href=`${ item.link }` class='my-list-group__link') 
+              | #{ item.text }
+              | (#{ item.numberOfProduct })
+
+//- Compary Product 
+mixin compareProduct(list)
+  section.sosanh.mb-4
+    .section-heading.mb-3
+      h2.text-heading--left.text-black.fs-6 So sánh sản phẩm
+      img(src="/assets/image/Image Rudu/titleleft-dark.png")
+    if list && list.length
+      +comparyProductList(list)
+    else
+      p.text-muted Bạn chưa có sản phẩm để so sánh
+
+//- Compary Product (se hoan thanh sau)
+mixin compareProductList(list)
+  p Nothing
+
+//- Mixin Tag Product 
+mixin tagProduct(list, key)
+  section.tag.mb-4
+    .section-heading.mb-3
+        h2.text-heading--left.text-black.fs-6 Tag sản phẩm
+        img(src="/assets/image/Image Rudu/titleleft-dark.png")
+    each item in list
+      if item.active != '' && item.active === key
+        a(href=`${item.link}` class='tag__name active') #{ item.text }
+      else
+        a(href=`${item.link}` class='tag__name') #{ item.text }
+//- Mixin Banner Aside 
+mixin bannerAside(urlImage)
+  .sidebar-banner
+    img(src=`${ urlImage }`, alt="banner aside image" class="img-fluid w-100")
+    
+//- Product List 
+mixin productList(list, paginationList, activeNumber)
+  section(class='products')
+    div(class='products__top')
+      div(class='products__director')
+        label(class='products__director-label active' for="plrow")
+          i(class='fas fa-th')
+        label(class='products__director-label' for="plcolumn")
+          i(class='fas fa-list')
+      //- Pagination 
+      +paginationProductList(paginationList, activeNumber)
+
+    input#plrow(type='radio' name='director' class='d-none' checked)
+    input#plcolumn(type='radio' name='director' class='d-none')
+    //- ProductList 
+    .products__list
+      each item in list
+        .products__item
+          +productCardConvert(item.title, item.price, item.priceOrigin, item.desc, item.badge, item.imageUrl)
+
+//- Mixin Product list pagination
+mixin paginationProductList(list = [{number: 1, link: '#'}, {number: 2, link: '#'}, {number: 3, link: '#'}, {number: 4, link: '#'}], activeNumber = 1)
+  nav(aria-label='Page navigation')
+    ul.pagination.mb-0
+      li.page-item
+        a.page-link(href='#' aria-label='Previous')
+          span(aria-hidden='true') &laquo;
+      each item, index in list ? list : []
+        if activeNumber == item.number
+          li.page-item.active
+            a.page-link(href=`${ item.link }`) #{ item.number }
+        else
+          li.page-item
+            a.page-link(href=`${ item.link }`) #{ item.number }
+      li.page-item
+        a.page-link(href='#' aria-label='Next')
+          span(aria-hidden='true') &raquo;

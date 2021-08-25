@@ -75,6 +75,12 @@
   // BREADCRUMB
   $breadcrumb-margin-bottom: variable.$breadcrumb-margin-bottom,
   $breadcrumb-active-color: variable.$breadcrumb-active-color,
+
+  // PAGINATION 
+  $pagination-color: variable.$pagination-color,
+  $pagination-padding-y: variable.$pagination-padding-y,
+  $pagination-padding-x: variable.$pagination-padding-x,
+  $pagination-border-width: variable.$pagination-border-width,
 );
 
 .btn-primary:hover{
