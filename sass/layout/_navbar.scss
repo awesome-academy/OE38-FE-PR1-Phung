@@ -1,0 +1,112 @@
+@use '../base/variable' as *;
+@use '../abstract/mixin' as mixin;
+@use '../base/custom' as bootstrap;
+
+.main-nav {
+  color: $gray-700;
+
+  @include bootstrap.media-breakpoint-down(lg) {
+    display: none;
+  }
+  
+  &__logo {
+    flex-basis: 16.66667%;
+    max-width: 16.666667%;
+  }
+  
+  &__list {
+    position: relative;
+
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    
+    width: 100%;
+
+    text-align: center;
+    
+    > li {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-evenly;
+      
+      > a {
+        position: relative;
+
+        @include mixin.flexCenter;
+        
+        font-size: 0.8125rem;
+        letter-spacing: 0.1rem;
+        text-transform: uppercase;
+        
+        &.my-dropdown:before {
+          content: "";
+          
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%) rotate(180deg);
+          
+          border-top: 0.5rem solid transparent;
+          border-right: 0.5rem solid transparent;
+          border-bottom: 0.5rem solid $secondary;
+          border-left: 0.5rem solid transparent;
+          
+          transition: all 0.3s ease-in-out;
+          
+          opacity: 0.6;
+        }
+      }
+
+      &:hover > .sub-menu {
+        visibility: visible;
+        opacity: 1;
+      }
+      
+      &:hover .my-dropdown:before {
+        transform: translateX(-50%);
+        opacity: 1;
+      }
+    }
+  }   
+}
+
+.sub-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid $secondary;
+  border-radius: 0 0 0.5rem 0.5rem;
+
+  background-color: $white;
+
+  transition: all 0.5s ease-in-out;
+  box-shadow: mixin.box-shadow($secondary);
+  z-index: 1000;
+  
+  opacity: 0;
+  visibility: hidden;
+
+  li {
+    display: block;
+    font-size: 0.875rem;
+    text-align: left;
+      
+    a {
+      text-decoration: none;
+
+      &:hover {
+        color: $secondary;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .sub-menu__heading {
+    font-size: 0.875rem;
+    font-weight: map-get($map: $font-weight, $key: medium);
+    text-transform: uppercase;
+  }
+}

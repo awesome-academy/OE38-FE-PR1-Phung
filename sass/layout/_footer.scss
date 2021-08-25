@@ -1,0 +1,84 @@
+@use '../base/variable' as *;
+
+.footer {
+
+  &__inf-box {
+
+  }
+
+  &__inf-heading {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  &__link {
+    display: block;
+    margin-bottom: 0.5rem;
+
+    color: $gray-700;
+
+    font-size: 0.75rem;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  &__desc {
+    font-size: 0.875rem;
+  }
+
+  &__email {
+    
+  }
+  
+  &__email-btn {
+    padding-left: 1rem;
+    padding-right: 2rem;
+    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0 52%, 0% 0%);
+  }
+
+  &__social {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__social-item {
+    
+    padding: 0.5rem;
+    margin-right: .5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1em;
+    color: inherit;
+  }
+
+  &__social-icon {
+  
+  }
+
+  &__copy-right {
+    padding: 0.5rem 0;
+    border-top: 1px solid $gray-300;
+
+    font-family: $font-family-third;
+    font-size: 0.875rem;
+    color: $gray-600;
+  }
+
+  &__payment {
+  }
+
+  &__payment-link {
+    display: inline-block;
+    margin: 0.25rem 0 0.25rem 1rem;
+    transition: all 0.2s ease-in-out;
+    filter: grayscale(120);
+    
+    &:hover {
+      filter: none;
+    }
+  }
+  
+  &__payment-image {
+    height: 1.3rem;
+  }
+}

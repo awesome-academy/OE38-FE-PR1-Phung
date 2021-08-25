@@ -1,0 +1,108 @@
+//- Mixin Company Item
+mixin companyItem(urlImage = '#', altImage = 'company')
+  .col-4.col-md-3.border-bottom
+    .footer__logo-box.text-center.py-4
+      img(src=`${ urlImage }` alt=`${ altImage }` class='img-fluid')
+
+//- Mixin Social Item
+mixin socialItem(icon = '', urlLink = '#')
+  a(href=`${ urlLink }` class='footer__social-item')
+    i(class=`${ icon }`)
+
+//- Mixin Payment Item
+mixin paymentItem(urlImage = '#', altImage = 'pay', urlLink = '#')
+  a(href=`${ urlLink }` class='footer__payment-link')
+    img(src=`${ urlImage }`, alt=`${ altImage }` class='footer__payment-image')
+
+//- Mixin Contact Phone Item
+mixin contactPhoneLinkItem(numberphone)
+  a(href=`tel:${ numberphone }`)
+    i(class='me-2 fas fa-phone-alt' class='text-decoration-none')
+    | #{ numberphone }
+//- Mixin Contact Email Item
+mixin contactEmailLinkItem(email)
+  a(href=`mailto:${ email }`)
+    i(class='me-2 fas fa-envelope' class='text-decoration-none')
+    | #{ email }
+//- Mixin Contact Info
+mixin contactInfo(address, phones, emails)
+  p.footer__desc
+    i(class='me-2 fas fa-map-marker-alt')
+    | #{ address }
+  //- Number phone list
+  p.footer__desc
+    each item, index in phones
+      +contactPhoneLinkItem(item)
+      if index % 2 === 0 && index !== phones.length - 1
+        span.seperate
+      else if index > 0
+        br
+  //- Email list 
+  p.footer__desc
+    each item, index in emails
+      +contactEmailLinkItem(item)
+      if index % 2 === 0 && index !== emails.length - 1
+        span.seperate
+      else if index > 0
+        br
+
+//- FOOTER SITE
+mixin footerSite
+  footer.footer
+    //- Companies 
+    .container
+      .row.justify-content-center
+        //- Companies List 
+        each company in companies
+          +companyItem(company.urlImage, company.altImage)
+        
+    //- Info 
+    .container.pt-5.pb-2
+      .row.justify-content-between
+        //- Footer about us
+        .col-lg-2.col-md-6
+          .footer__inf-box.mb-4
+            h5.footer__inf-heading Thông tin
+            //- Link list 
+            each item in footerInfo
+              a(href=`${ item.urlLink }` class='footer__link') #{ item.text }
+
+        //- Footer service
+        .col-lg-2.col-md-6
+          .footer__inf-box.mb-4
+            h5.footer__inf-heading Mua hàng
+            //- Link list 
+            each item in footerService
+              a(href=`${ item.urlLink }` class='footer__link') #{ item.text }
+
+        //- Footer help
+        .col-lg-3.col-md-6
+          .footer__inf-box.mb-4
+            h5.footer__inf-heading Gửi emai
+            p.footer__desc.text-muted Gửi email cho chúng tôi để được hỗ trợ
+            //- Footer Email Form 
+            form(action='#' class='footer__email d-flex mb-3')
+              input(type='email', name='fiemail' placeholder='Enter your email' class='form-control rounded-0')
+              button(type='submit' class='footer__email-btn btn btn-primary rounded-0') GỬI
+              
+            //- Social 
+            div.footer__social
+              each item in socialArr
+                +socialItem(item.icon, item.urlLink)
+
+        //- Footer contact
+        .col-lg-4.col-md-6
+          address.footer__inf-box.text-black.mb-4
+            h5.footer__inf-heading Liên hệ
+            +contactInfo(contact.address, contact.phone, contact.email)
+    //- Footer copyright
+    .footer__copy-right
+      .container
+        .row.justify-content-between.align-items-center
+          .col-lg
+            p.mb-0 © Copyright 2008-2014 DKT Technology JSC
+          .col-lg-auto.mb-2.mb-ld-0.order-first.order-lg-0
+            .footer__payment
+              //- Payment List 
+              each item in payment
+                +paymentItem(item.urlImage, item.altImage, item.urlLink)

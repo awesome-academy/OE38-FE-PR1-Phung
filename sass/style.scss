@@ -1,5 +1,16 @@
+// BASE 
 @use 'base/config';
 
-@use 'vendor/font-awesome.scss';
+// COMPONENT 
+@use './components/search-box';
 
+// LAYOUT
+@use './layout/header';
+@use './layout/navbar';
+@use './layout/footer';
+
+// VENDOR
+@use 'vendor/font-awesome';
+
+// PAGES
 @use 'pages/index';
