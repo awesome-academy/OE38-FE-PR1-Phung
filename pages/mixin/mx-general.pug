@@ -139,3 +139,13 @@ mixin blogCard(title, author, time, comments, desc, urlImage, urlPost = '#')
           p.blog-card__text #{ desc }
               br
               a(href=`${ urlPost }` class='blog-card__link') Read more
+//- Breadcrumb 
+mixin breadcrumbPage(...items)
+    nav(aria-label='breadcrumb')
+        ol(class='my-breadcrumb breadcrumb')
+            each item, index in items
+                if index === items.length - 1
+                    li(class='breadcrumb-item active') #{ item.name }
+                else
+                    li(class='breadcrumb-item')
+                        a(href=`${ item.link }` class='text-decoration-none') #{ item.name }

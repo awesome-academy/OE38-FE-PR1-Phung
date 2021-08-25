@@ -1,0 +1,85 @@
+@use '../base/variable' as *;
+@use '../abstract/mixin' as mixin;
+@use '../base/custom' as bootstrap;
+
+.product {
+
+  &__img-box {
+
+  }
+
+  &__img-large {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    height: 100%;
+    padding: 1rem;
+
+  }
+
+  &__color {
+    --product-color: #{ $gray-400 };
+
+    display: inline-block;
+    width: 1.875rem;
+    height: 1.875rem;
+
+    background-color: var(--product-color);
+
+    cursor: pointer;
+  }
+
+  input[type="radio"]:checked + label.product__color {
+      outline: 0.125rem solid var(--product-color);
+      outline-offset: 0.1rem;
+  }
+
+  &__amount {
+      display: inline-flex;
+      align-items: center;
+      background-color: $gray-200;
+  }
+
+  &__number {
+      width: 4.25rem;
+      padding: 0.25rem 0.5rem;
+      border: none;
+      outline: none;
+
+      font-size: 1rem;
+      text-align: center;
+
+      &:invalid {
+          color: red;
+          box-shadow: 0 0 4px rgba(red, $alpha: 0.5);
+      }
+  }
+
+  &__social-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    & > * {
+      margin-right: 1rem !important;
+    }
+  }
+
+  &__personal {
+    
+    &-item {
+      margin: 0 1rem;
+      cursor: pointer;
+      white-space: nowrap;
+  
+      &:hover {
+          color: $secondary;
+      }
+
+      &.lovely-active * {
+        color: $pink;
+      }
+    }
+  }
+}
