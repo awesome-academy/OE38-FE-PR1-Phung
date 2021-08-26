@@ -1,0 +1,141 @@
+//- MIXIN 
+//- Mixin About Home 
+mixin aboutHome(desc, link = '#')
+  section(class='home-about py-5 py-lg-6rem')
+    .container
+        .row.justify-content-center
+            .col-md-8
+                .section-heading.text-center.mb-3
+                    h2.text-heading Giới thiệu
+                    img(src='assets/image/Image\ Rudu/title-dark.png' class='img-fluid')
+        .row.justify-content-center
+            .col-12.col-md-11.col-lg-10
+                .section-content.text-center
+                    p.text-center.text-muted.px-md-4.px-lg-5.mb-3 #{ desc }
+                    a(href=`${ link }` class='btn btn-primary w-100 w-lg-auto rounded-0') XEM THÊM
+
+//- Mixin Product Intro 
+mixin productIntro(title, price, desc, imageUrl, linkProductUrl, countDown)
+  section.product-intro
+      .container.bg-home-1
+        .product-intro__box.shadow-sm
+          .row.justify-content-between
+            //- Product Image Box 
+            .col-md-6
+              .product-intro__image-box.mb-4.mb-md-0.shadow
+                //- Badge
+                a(href='#' class='link-image')
+                  //- Image 
+                  img(src=`${ imageUrl }`, alt='product1' class='img-fluid')
+                  //- Badge Image
+                  +badge('hot')
+            //- Product Info 
+            .col-md-6.col-lg-5
+              .product-inf
+                a(href='#').section-heading--left.text-decoration-none.mb-1.mb-md-2.mb-lg-3
+                  h3.product-info__heading.text-uppercase #{ title }
+                  img(src='./assets/image/Image\ Rudu/titleleft-dark.png' class='img-fluid')
+                //- Price 
+                h4.product-info__price.mb-3.mb-lg-4 #{ price }
+                  sup đ
+                button(type='button' class='btn btn-primary w-100 w-lg-auto text-uppercase rounded-0 mb-2 mb-md-4') Add to cart
+                //- Desc 
+                p.product-info__desc.d-none.d-md-block.text-muted #{ desc }
+                //- Count down
+                if countDown && countDown.length != 0
+                  +countDown(countDown.day, countDown.hour, countDown.minute, countDown.second)
+
+//- Mixin Product New 
+mixin productNew(heading, list)
+  section.product-hero
+    .container
+    .row.justify-content-center
+        .col-12.col-md-8
+            .section-heading.text-center.mb-3
+                h2.text-heading #{heading}
+                img(src='assets/image/Image Rudu/title-dark.png' class='img-fluid')
+    .container
+      +productSlide(list, carouselProductNew)
+
+//- Mixin Image Home List 
+mixin imageHomeList(list)
+  section.images-hero
+    .row.g-0
+      each item in list ? list : []
+        .col-6.col-md-3
+          div(style=`background-image: url('${ item }')` class='images-hero__item')
+
+//- Mixin Product Hot 
+mixin productHot(heading, list)
+  section.product-hero
+    .container
+    .row.justify-content-center
+        .col-12.col-md-8
+            .section-heading.text-center.mb-3
+                h2.text-heading #{heading}
+                img(src='assets/image/Image Rudu/title-dark.png' class='img-fluid')
+    .container
+      +productSlide(list, 'carouselProductHot')
+
+//- Mixin Blog Home & Client Res
+mixin blogAndClient()
+  section.client.py-5.my-4
+    .container
+      .row
+        .col-lg-8
+          +blogHome('Tin tức & Blog', dtBlogCard)
+        .col-lg-4
+          +feedBack('Khách hàng', dtFeedBack)
+          
+//- Mixin Blog in Home Page
+mixin blogHome(heading, listBlogCard)
+  .row
+    .section-heading.text-center.mb-3
+      h2.text-heading #{ heading }
+      img(src='assets/image/Image Rudu/title-dark.png' class='img-fluid')
+  .row
+    each item in listBlogCard ? listBlogCard : []
+      .col-sm-6
+        +blogCard(item.title, item.author, item.time, item.numberOfComment, item.text, item.imageCard)
+
+//- Mixin FeedBack 
+mixin feedBack(heading, listFeedBack)
+  .section-heading.text-center.mb-3.mt-5.mt-lg-0
+    h2.text-heading #{ heading }
+    img(src='assets/image/Image Rudu/title-dark.png' class='img-fluid')
+  +slideFeedBack(listFeedBack, 'carouselReview')
+
+//- Mixin Slide FeedBack 
+mixin slideFeedBack(listFeedBack, idSlide)
+  div(id=`${ idSlide }` class='carousel slide' data-bs-ride='carousel')
+    div(class='carousel-indicators')
+      //- Button Choose Slide
+      - let n = 0, numberSlide = listFeedBack ? listFeedBack.length : 0
+      while  n < numberSlide
+        if n === 0
+          button(type='button' class='indicators-circle' data-bs-target=`#${ idSlide }` data-bs-slide-to='0' class='active' aria-current='true' aria-label='Slide 1')
+        else
+          button(type='button' class='indicators-circle' data-bs-target=`#${ idSlide }` data-bs-slide-to=`${ n }` aria-label=`Slide ${ n + 1 }`)
+        - n++;
+    //- Slide List 
+    div(class='carousel-inner')
+      each item, index in listFeedBack ? listFeedBack : []
+        if index === 0
+          div(class='carousel-item active')
+            +slideFeedBackItem(item.author, item.text, item.job, item.avatar, item.link)
+        else
+          div(class='carousel-item')
+            +slideFeedBackItem(item.author, item.text, item.job, item.avatar, item.link)
+
+//- Mixin Feedback Item 
+mixin slideFeedBackItem(author, text, job, avatarImageUrl, linkPost)
+  .card.text-center.align-items-center
+    .card-body.py-5
+      div(class='client__quote mb-4')
+        img(src=`${dtQuoteImageUrl}`, alt='trichdan' style='width: 3.5rem' class='img-fluid justify-self-center mb-4')
+        p.text-muted.mb-1 #{ text }
+        a.d-block.text-muted(href=`${ linkPost }`) #{dtTextReadMore}
+      div.client__inf
+        div(class='client__avatar' style=`background-image: url('${ avatarImageUrl }')`)
+        p.mb-0.fw-bold.text-uppercase #{ author }
+        p.text-muted #{ job }

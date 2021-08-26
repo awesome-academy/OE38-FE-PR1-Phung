@@ -1,0 +1,156 @@
+@use '../base/variable' as *;
+@use '../abstract/mixin' as mixin;
+@use '../base/custom' as bootstrap;
+
+.home-about {
+  background: url("../../assets/image/Image-Rudu/product.jpg") no-repeat top left -17% / 30%;
+}
+
+.bg-home-1 {
+  background: url("../../assets/image/Image-Rudu/wine-63931_12802-1240x829.jpg") no-repeat center / cover;
+}
+
+.product-intro {
+  --transitionY: 22.5rem;
+
+  padding-bottom: calc(var(--transitionY) + 4rem);
+  
+  @include bootstrap.media-breakpoint-down(lg) {
+    --transitionY: 10rem;
+  }
+
+  @include bootstrap.media-breakpoint-down(md) {
+    --transitionY: 2rem;
+  }
+  
+  &__box {
+    position: relative;
+    top: var(--transitionY);
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 92.5%;
+    padding: 6rem;
+    background: $white;
+
+    @include bootstrap.media-breakpoint-down(lg) {
+      padding: 2rem;
+    }
+    
+    @include bootstrap.media-breakpoint-down(md) {
+      top: 2rem;
+    }
+  }
+
+  &__image-box {
+    position: relative;
+  }
+}
+
+.product-info {
+  &__heading {
+    font-size: 1.5625rem;
+
+    @include bootstrap.media-breakpoint-down(lg) {
+      font-size: 1.5rem;
+    }
+
+    @include bootstrap.media-breakpoint-down(md) {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__price {
+    color: $secondary;
+
+    font-family: $font-family-secondary;
+    font-size: 2.125rem;
+
+    @include bootstrap.media-breakpoint-down(lg) {
+      font-size: 2rem;
+    }
+
+    @include bootstrap.media-breakpoint-down(md) {
+      font-size: 1.75rem;
+    }
+  }
+
+  &__desc {
+      font-size: 0.8725rem;
+  }
+}
+
+.count-down {
+  color: $secondary;
+  font-family: $font-family-secondary;
+  text-align: center;
+
+  @include bootstrap.media-breakpoint-down(lg) {
+    font-size: 75%;
+  }
+
+  @include bootstrap.media-breakpoint-down(md) {
+    font-size: 62.5%;
+  }
+  
+  &__box {
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+  }
+  
+  &__number {
+      font-size: 2.125em;
+      margin-bottom: 0.25em;
+  }
+  
+  &__unit { 
+      font-size: 0.875em;
+      text-transform: uppercase;
+      margin: 0.25em;
+  }
+}
+
+.images-hero {
+  padding: 5rem 0;
+  
+  &__item {
+    width: 100%;
+    
+    padding-top: 60%;
+    
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    
+    &:hover {
+      outline: 4px solid $secondary;
+      outline-offset: -4px;
+    }
+  }
+}
+
+.client {
+  font-size: 0.875rem;
+
+  &__quote {
+
+  }
+
+  &__avatar {
+    width: 6rem;
+    height: 6rem;
+
+    border-radius: 1rem;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  &__inf {
+      
+  }
+}

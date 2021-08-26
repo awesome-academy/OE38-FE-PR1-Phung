@@ -1,0 +1,141 @@
+//- Search Box 
+mixin searchBox(value, placeholder, action = '#')
+  form(action=`${ action }` class='search-box')
+    input(type='text' name='hsearch' placeholder=`${ placeholder }` aria-label='Search' class='search-box__input' value=`${ value }` required)
+    button(type='submit' class='search-box__btn')
+      svg(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-search' viewBox='0 0 16 16')
+        path(d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z')
+
+//- Banner Silde Main 
+mixin slideMain(list, idSlide)
+  div(id=`${ idSlide }` class='carousel slide' data-bs-ride='carousel')
+    div(class='carousel-indicators')
+      //- Indicators Button Item 
+      - let n = 0, numberSlide = list ? list.length : 0
+        while  n < numberSlide
+          if n === 0
+            button(type='button' data-bs-target=`#${ idSlide }` data-bs-slide-to='0' class='active' aria-current='true' aria-label='Slide 1')
+          else
+            button(type='button' data-bs-target=`#${ idSlide }` data-bs-slide-to=`${ n }` aria-label=`Slide ${ n + 1 }`)
+          - n++;
+    //- Carousel List Item
+    div(class='carousel-inner')
+      each item, index in list ? list : [0]
+        if index === 0
+          div(class='carousel-item active')
+            a(href=`${ item.link }`)
+              div(class='banner-image' style=`background-image: url('${ item.urlImage }')`)
+        else
+          div(class='carousel-item')
+            a(href=`${ item.link }`)
+              div(class='banner-image' style=`background-image: url('${ item.urlImage }')`)
+
+//- Badge 
+mixin badge(key)
+    if key !== '' && badge[key]
+        div(class='my-badge-box')
+            div(class=`my-badge my-badge--${ key }` style=`--my-badge-color: ${ badge[key].color }`)
+                img(src=`${ badge[key].url }` alt=`${ key }` class='img-fluid')
+
+//- Count down
+mixin countDown(day, hour, minute, second)
+  .count-down.mt-3.mt-lg-5
+    .row.g-0
+      .col-6.col-sm-3.col-md-6.border.border-secondary
+        .count-down__box
+          h6.count-down__number #{ day }
+          p.count-down__unit Ngày
+      .col-6.col-sm-3.col-md-6.border.border-secondary
+        .count-down__box
+          h6.count-down__number #{ hour }
+          p.count-down__unit Giờ
+      .col-6.col-sm-3.col-md-6.border.border-secondary
+        .count-down__box
+          h6.count-down__number #{ minute }
+          p.count-down__unit Phút
+      .col-6.col-sm-3.col-md-6.border.border-secondary
+        .count-down__box
+          h6.count-down__number #{ second }
+          p.count-down__unit Giây
+
+//- Button Add To Cart 
+mixin btnAddToCart(active, id)
+  form(action=`${ active }`)
+    input(type='hidden', name='idProduct' value=`${ id }`)
+    button(type='button' class='btn btn-primary w-100 w-lg-auto rounded-0') ADD TO CART
+    
+//- Product Card 
+mixin productCard(name, price, priceOrigin, badgeName = '', urlImage = '#', urlProduct = '#')
+  div(class='product-card card text-center shadow-sm')
+    //- Img box 
+    div(class='product-card__img-box')
+      //- Image
+      a(href=`${ urlProduct }` class='link-image')
+        img(src=`${ urlImage }` alt=`${ name }` class='img-fluid')
+        //- Badge
+        +badge(badgeName)
+      //- Personal
+      div.product-card__personal
+        span(class='product-card__personal-item')
+          i(class='product-card__personal-icon fas fa-heart me-1')
+          span Yêu thích
+        span(class='product-card__personal-item')
+          i(class='product-card__personal-icon fas fa-signal me-1')
+          span So sánh
+      //- Card Body
+    .card-body
+      //- Info
+      a(href=`${ urlProduct }` class='product-card__link')
+        h4(class='product-card__title') #{ name }
+        p(class='product-card__price') #{ price }
+          sup đ
+          span(class='product-card__price-origin') - #{ priceOrigin } 
+            sup đ
+      //- Btn add cart 
+      +btnAddToCart('#')
+
+//- Product Slide
+mixin productSlide(list, idSlide, theme = 'dark')
+  div(id=`${ idSlide }` class=`carousel carousel-${ theme } slide` data-bs-ride='carousel')
+    div(class='carousel-inner')
+
+      - let index = 0;
+      while list && index < list.length
+        if(index === 0)
+          div(class='carousel-item active')
+            .row.justify-content-center
+              //- 4 product in 1 slide item 
+              each item in [1, 2, 3, 4]
+                .col-md-6.col-lg-3.mb-3
+                  if list[index]
+                    +productCard(list[index].title, list[index].price, list[index].priceOrigin, list[index].badge, list[index].imageUrl)
+                - index++
+        else
+          div(class='carousel-item')
+            .row.justify-content-center
+              //- 4 product in 1 slide item 
+              each item in [1, 2, 3, 4]
+                .col-md-6.col-lg-3.mb-3
+                  if list[index]
+                    +productCard(list[index].title, list[index].price, list[index].priceOrigin, list[index].badge, list[index].imageUrl)
+                - index++
+              
+    div.text-center.mt-4
+      button(class='btn btn-primary px-3' type='button' data-bs-target=`#${ idSlide }` data-bs-slide='prev')
+        i(class='fas fa-arrow-left')
+      button(class='btn btn-primary px-3' type='button' data-bs-target=`#${ idSlide }` data-bs-slide='next')
+        i(class='fas fa-arrow-right')
+
+//- Blog Card 
+mixin blogCard(title, author, time, comments, desc, urlImage, urlPost = '#')
+  .blog-card
+      a(href=`${ urlPost }` class='link-image')
+        div(class='blog-card__image-box' style=`background-image: url('${ urlImage }')`)
+      .blog-card__body
+          h5.blog-card__title #{ title }
+          p.blog-card__info Đăng bởi #{ author } | 
+              time(datetime=`&{ time }`) #{ time } | 
+              | #{ comments } bình luận
+          p.blog-card__text #{ desc }
+              br
+              a(href=`${ urlPost }` class='blog-card__link') Read more

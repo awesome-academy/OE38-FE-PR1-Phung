@@ -3,6 +3,10 @@
 
 // COMPONENT 
 @use './components/search-box';
+@use './components/banner';
+@use './components/badge';
+@use './components/product-card';
+@use './components/blog-card';
 
 // LAYOUT
 @use './layout/header';

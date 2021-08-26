@@ -1,0 +1,46 @@
+@use '../base/custom' as *;
+
+.blog-card {
+  height: 100%;
+  text-decoration: none;
+  box-shadow: 0 .125rem .25rem rgba($black, .075);
+  transition: box-shadow 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 .5rem 1rem rgba($black, .15);
+  }
+
+  &__image-box {
+    display: block;
+
+    width: 100%;
+    padding-top: 66.66667%;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  &__body {
+    padding: 1.5rem;
+  }
+
+  &__title {
+    text-transform: uppercase;
+  }
+
+  &__info {
+    color: $gray-500;
+    font-size: 0.75rem;
+  }
+  
+  &__text {
+    color: $gray-600;
+    font-size: 0.875rem;
+  }
+
+  &__link {
+    color: $secondary;
+    text-decoration: none;
+  }
+}
