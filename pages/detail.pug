@@ -1,0 +1,25 @@
+extends templates/layout
+
+block title
+  title Sản phẩm - Wine House
+
+block main
+  div.py-4
+    div.container
+      +breadcrumbPage({name: 'Trang chủ', link: '#'}, {name: 'Sản Phẩm', link: '#'}, {name: 'Rượu vang đỏ', link: '#'})
+  main
+    //- Product Box
+    +productBox(dtProduct.id, dtProduct.title, dtProduct.price, dtProduct.rating, dtProduct.numberOfReview, dtProduct.colors, dtProduct.sizes, dtProduct.desc, dtProduct.lovely, dtProduct.imgList, dtProduct.productInfo)
+    //- Product Interested
+    +productInterested('Sản phẩm liên quan', dtProductInterested)
+
+block script
+  // Load Facebook SDK for JavaScript
+  div(id='fb-root')
+  script(async defer crossorigin='anonymous' src='https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0' nonce='J3xwZKTj')
+  // Load script twitter
+  script(async src='https://platform.twitter.com/widgets.js' charset='utf-8')
+  // Load script Linkedin
+  script(src='https://platform.linkedin.com/in.js' type='text/javascript') lang: en_US
+  // Load script Pinterest
+  script(async defer src='//assets.pinterest.com/js/pinit.js')

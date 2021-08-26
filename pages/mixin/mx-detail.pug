@@ -1,0 +1,183 @@
+//- MIXIN 
+//- Mixin Product
+mixin productBox(idProduct, title, price, rating, numberOfReview, colors, sizes, desc, lovely, imageList, productInfo,linkComments = '#', numberProductMin, numberProductMax)
+  section.product
+    .container
+      .row.justify-content-center
+
+        .col-md-10.col-lg-7
+          //- Product Image 
+          .product__img-box.mb-4.mb-lg-0
+
+            .row.g-0.justify-content-center
+              .col-2
+                .d-none.d-sm-block
+                  +productSlideImage(imageList, 'carouselProductImage')
+              .col-sm-10
+                div.product__img-large.text-center
+                  img(src='/assets/image/Product/2.jpg', alt='product image' class='img-fluid shadow')
+
+        .col-md-10.col-lg-5
+          //- Product Content 
+          .product__body
+            //- Heading 
+            div.section-heading.mb-3
+              h1.text-heading--left #{ title }
+              img(src='/assets/image/Image Rudu/titleleft-dark.png' class='img-fluid')
+            //- Body 
+            .section-content
+              h5.price #{ price }
+                sup đ
+              //- Rating Product
+              p.border-top.border-bottom.py-3
+                +ratingStar(rating)
+                span.text-muted #{ numberOfReview } Review(S) | 
+                a(href=`${ linkComments }` class='text-decoration-none') Add Your Review
+              //- Form Add Product To Cart
+              +formAddProductToCart(idProduct, colors, sizes, )
+              
+              div.product__personal.mb-3
+                span.product__personal-item.lovely-active
+                  i(class='fas fa-heart me-1')
+                  span Yêu thích
+                span.product__personal-item
+                  i(class='fas fa-signal me-1 text-secondary')
+                  span So sánh
+                span.product__personal-item
+                  i(class='fas fa-envelope me-1')
+                  span Email
+              //- Desc 
+              .product__desc 
+                h6.text-uppercase Mô tả
+                p.text-muted #{desc}
+              //- Social 
+              +listSocial(dtUrlFacebook, dtUrlTwitter, dtIdLinkedin, dtPinterestLink)
+      
+    +accordionProductInfo(productInfo, dtAccordionImageUrl,'myTab')
+      
+//- Mixin Product Slide Image 
+mixin productSlideImage(list, idSlide, theme = 'dark')
+  div(id=`${ idSlide }` class=`carousel carousel-${ theme } slide slide-vertical` data-bs-ride='carousel')
+    div.text-center.mb-4
+      button(class='btn px-3' type='button' data-bs-target=`#${ idSlide }` data-bs-slide='next')
+          i(class='fas fa-arrow-up')
+    div(class='carousel-inner')
+    
+      - let index = 0;
+      while list && index < list.length
+        if(index === 0)
+          div(class='carousel-item active')
+            .row.justify-content-between
+              //- max 4 image in 1 item
+              each item in [1, 2, 3, 4]
+                .col-12
+                  if list[index]
+                    a(href='#' class='d-block shadow-sm my-1')
+                      img(src=`${ list[index].imageUrl }`, alt=`image slide` class='img-fluid ')
+                - index++
+        else
+          div(class='carousel-item')
+            .row.justify-content-center
+              //- max 4 image in 1 item
+              each item in [1, 2, 3, 4]
+                .col-12
+                  if list[index]
+                    a(href='#' class='d-block shadow-sm my-1')
+                      img(src=`${ list[index].imageUrl }`, alt=`image slide` class='img-fluid')
+                - index++
+                
+    div.text-center.mt-4
+      button(class='btn px-3' type='button' data-bs-target=`#${ idSlide }` data-bs-slide='prev')
+        i(class='fas fa-arrow-down')
+
+//- Mixin Accordion Product Info 
+mixin accordionProductInfo(accordionList, imageUrl, idAccordion)
+  .container     
+    .row.py-5.justify-content-center
+      .col-lg-8
+        ul(class='nav nav-tabs'  id=`${ idAccordion }` role='tablist')
+          each item, index in accordionList ? accordionList : []
+            if index === 0
+              li(class='nav-item' role='presentation')
+                a(class='nav-link active text-uppercase' id=`accordion-${ idAccordion }-${ index + 1 }-tab` data-bs-toggle='tab' data-bs-target=`#accordion-${ idAccordion }-${ index + 1 }` type='button' role='tab' aria-controls='home' aria-selected='true') #{ item.title }
+            else
+              li(class='nav-item' role='presentation')
+                a(class='nav-link  text-uppercase' id=`accordion-${ idAccordion }-${ index + 1 }-tab` data-bs-toggle='tab' data-bs-target=`#accordion-${ idAccordion }-${ index + 1 }` type='button' role='tab' aria-controls='profile' aria-selected='false') #{ item.title }
+        div(class='tab-content py-3' id=`${ idAccordion }Content`)
+          each item, index in accordionList ? accordionList : []
+            if index === 0
+              div(class='tab-pane fade text-muted show active' id=`accordion-${ idAccordion }-${ index + 1 }` role='tabpanel' aria-labelledby=`accordion-${ idAccordion }-${ index + 1 }-tab`) #{item.desc}
+            else
+              div(class='tab-pane fade text-muted' id=`accordion-${ idAccordion }-${ index + 1 }` role='tabpanel' aria-labelledby=`accordion-${ idAccordion }-${ index + 1 }-tab`) #{item.desc}
+      
+      .col-lg-4
+        img(src=`${ imageUrl }`, alt='product image' class='img-fluid')
+
+//- Mixin Form Add Product To Cart
+mixin formAddProductToCart(idProduct, colors, sizes, numberProductMin, numberProductMax)
+  form(action='#' class='product__form mb-3')
+    input(type='hidden' name='idProduct' value=`${ idProduct }`)
+    //- Choose color product 
+    if colors && colors.length > 0
+      section.mb-4
+        h6.text-uppercase.mb-3 Màu sắc
+        each color, index in colors
+          span.me-1
+            //- Input radio 
+            if index === 0
+              input(type='radio' name='pcolor' id=`pcolor${ index + 1 }` value=`${color}` class='d-none' checked)
+            else
+              input(type='radio' name='pcolor' id=`pcolor${ index + 1 }` value=`${color}` class='d-none')
+            //- Label 
+            label(for=`pcolor${ index + 1 }` class='product__color' style=`--product-color: ${ color }`)
+    
+    if sizes && sizes.length > 0
+      section.mb-4
+        h6.text-uppercase Kích cỡ
+        select(class='form-select w-auto' aria-label='Default select example' name='psize')
+          each size, index in sizes
+            option(value=`${ index }`) #{size}
+
+    section.mb-4
+      h6.text-uppercase Số lượng
+      div
+        .row.align-items-center
+          .col-md
+            div(class='product__amount my-2' for='product-amount')
+              button(type='button' class='btn btn-gray') -
+              input#product-amount(type='text' name='pamount' class='product__number' pattern='[0-9]*' value='1' required data-numberProductMin=`${ numberProductMin }` data-numberProductMax=`${ numberProductMax }`)
+              button(type='button' class='btn btn-gray') +
+          .col-md-auto.mt-3.mt-md-0
+            button(type='submit' class='btn btn-primary w-100 w-lg-auto uppercase rounded-0') ADD TO CART
+
+//- Mixin rating 
+mixin ratingStar(rate)
+  span.rate.me-2
+    each item in rate ? rate : []
+      case item
+        when 0
+          i(class='far fa-star rate__icon')
+        when 1
+          i(class='fas fa-star rate__icon')
+        default
+          i(class='fas fa-star-half-alt rate__icon')
+
+//- Mixin Company Social
+mixin listSocial(urlFacebook, urlTwitter, idLinkedin, urlPinterest)
+  .product__social-list
+    div(class="fb-like" data-href=`${ urlFacebook }` data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false")
+    a(href=`${ urlTwitter }` class="twitter-follow-button" data-show-count="false") Follow @TwitterDev
+    script(type="IN/FollowCompany" data-id=`${ idLinkedin }` data-counter="bottom")
+    a(data-pin-do="buttonFollow" href=`${ urlPinterest }`) Pin&nbsp;it
+
+//- Mixin Product Interested 
+mixin productInterested(heading, list)
+  section.product-hero
+    .container
+    .row.justify-content-center
+        .col-12.col-md-8
+            .section-heading.text-center.mb-3
+              h2.text-heading #{heading}
+              img(src='assets/image/Image Rudu/title-dark.png' class='img-fluid')
+    .container
+      +productSlide(list, 'carouselProductInterested')
