@@ -1,0 +1,17 @@
+extends templates/layout
+
+block title
+  title Sản phẩm - Wine House
+
+block main
+  div.py-4
+    div.container
+      +breadcrumbPage({name: 'Trang chủ', link: '#'}, {name: 'Giới thiệu', link: '#'})
+  main(class='about')
+    .container
+      .row.mb-4
+        .col
+          h2.text-heading--left Giới thiệu
+          img(src='/assets/image/Image Rudu/titleleft-dark.png')
+      .row 
+        +about(dtAbout.title, dtAbout.desc, dtAbout.imageUrl)

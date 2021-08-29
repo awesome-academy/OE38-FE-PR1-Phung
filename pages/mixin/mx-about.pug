@@ -1,0 +1,8 @@
+//- Mixin About 
+mixin about(title, desc, imageUrl)
+  .col-md-5
+    img(src=`${ imageUrl }` alt="about image" class="img-fluid")
+  .col-md-6.col-lg-7
+    section.py-3.py-md-0
+      h1.text-uppercase.fs-3.text-black #{ title }
+      p #{ desc }
