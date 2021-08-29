@@ -1,0 +1,53 @@
+@use '../base/variable' as *;
+@use '../abstract/mixin' as mixin;
+@use '../base/custom' as bootstrap;
+
+.form-cart {
+}
+
+.table-cart {
+  width: 100%;
+  font-size: 0.875rem;
+  text-align: center;
+  background-color: $gray-100;
+  white-space: nowrap;
+  
+  th:first-child, td:first-child {
+    position: sticky;
+    left: 0;
+    background-color: $gray-100;
+    z-index: 1;
+  }
+
+  thead tr, tfoot tr {
+    border-bottom: 1px solid $gray-400;
+  }
+
+  thead tr {
+    text-transform: uppercase;
+  }
+
+  tr {
+    border-bottom: 1px solid $gray-300;
+  }
+
+  th, td {
+    padding: 16px;
+
+    &:first-child {
+      width: 146px;
+      text-align: center;
+      text-transform: uppercase;
+      
+      @include bootstrap.media-breakpoint-down(md) {
+        padding: 8px;
+      }
+    }
+  }
+
+  &__amount {
+    width: 1.5rem;
+    height: 1.5rem;
+    text-align: center;
+  }
+}

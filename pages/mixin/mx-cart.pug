@@ -1,0 +1,44 @@
+//- Mixin Cart Table
+mixin cartTable(list)
+  if list
+    form(action='#' class='form-cart')
+      .overflow-auto.mb-5
+        table.table-cart
+          thead
+            tr
+              th Ảnh
+              th Tên sản phẩm
+              th Giá
+              th Số lượng
+              th Tổng Số
+              th Xoá
+          tfoot
+            tr
+              th Số lượng
+              th(colspan='5') #{ list.length }
+            tr
+              th Tổng số
+              th(colspan='5' class='price--small') 1.725.000
+                sup đ
+          tbody
+            each item in list.length ? list : []
+              +cartTableItem(item.title, item.price, item.imageUrl)
+      div.float-end
+        button(type='submit' class='btn btn-primary rounded-0') Tiếp tục mua hàng
+        button(type='submit' class='btn btn-primary rounded-0') Xoá
+        button(type='submit' class='btn btn-primary rounded-0') Cập nhật
+//- Mixin Cart Table 
+mixin cartTableItem(title, price, imageUrl)
+  tr
+    td
+      img(src=`${imageUrl}`, alt='product' class='img-fluid')
+    td.text-uppercase #{ title }
+    td.price--small #{ price }
+      sup đ
+    td 
+      input(type='text' name='product1' value=1 class='table-cart__amount') 
+    td.price--small #{ price }
+      sup đ
+    td
+      button.btn
+        i(class='far fa-trash-alt')
