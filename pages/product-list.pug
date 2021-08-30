@@ -1,0 +1,27 @@
+extends templates/layout
+
+block title
+  title Sản phẩm - Wine House
+
+block main
+  //- Breadcrumb 
+  .py-4
+    .container
+      +breadcrumbPage({name: 'Trang chủ', link: '#'}, {name: 'Sản Phẩm', link: '#'}, {name: 'Rượu vang đỏ', link: '#'})
+  //- Banner
+  +bannerProductList(dtBannerImageUrl)
+  //- Content
+  .wrapper
+    .container
+      .row
+        .col-12
+          +categoryHorizontal(dtProductCategory, 'Johnnie Walker')
+      .row
+        .col-lg-3.d-none.d-lg-block
+          aside.sidebar
+            +productCategoryAside(dtProductCategory, 'Johnnie Walker')
+            +compareProduct()
+            +tagProduct(dtTagProduct, 'dongho')
+            +bannerAside(dtbannerAsideImageUrl)
+        .col-lg-9
+          +productList(dtProductListConvert)

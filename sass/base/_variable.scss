@@ -5,6 +5,7 @@ $orange-light: #e6ae48;
 $font-family-primary: 'Times New Roman', Times, serif;
 $font-family-secondary: 'UTM Caviar', sans-serif;
 $font-family-third: 'Roboto', sans-serif;
+$font-family-fourth: 'Open Sans', sans-serif;
 
 $font-weight: (
   'regular': 500,
@@ -46,8 +47,8 @@ $link-color: $primary;
 $link-hover-color: $secondary;
 
 //COMPONENT COLOR
-$component-active-color: $white;
-$component-active-bg: $secondary;
+$component-active-color: $secondary;
+$component-active-bg: $white;
 
 // Box shadow
 $box-shadow: 0 .5rem 1rem rgba($black, .15);
@@ -91,3 +92,10 @@ $nav-tabs-link-active-color: $white;
 // BREADCRUMB 
 $breadcrumb-margin-bottom: 0;
 $breadcrumb-active-color: $secondary;
+
+// PAGINATION 
+$pagination-color: inherit;
+
+$pagination-padding-y: 0.375rem;
+$pagination-padding-x: 0.25rem;
+$pagination-border-width: 0;

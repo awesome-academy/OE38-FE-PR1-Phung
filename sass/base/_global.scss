@@ -87,6 +87,7 @@ body {
     transform: translate(50%, 50%);
 
     transition: all 0.3s ease-in-out;
+    z-index: 1;
   }
   
   &::after {
@@ -105,6 +106,7 @@ body {
     transform: translate(50%, 50%);
 
     transition: all 0.3s ease-in-out;
+    z-index: 1;
   }
   
   &:hover::before {
@@ -133,6 +135,31 @@ body {
   }
 }
 
+.tag {
+  color: inherit;
+
+  &__name {
+      display: inline-block;
+      text-decoration: none;
+      border: 1px solid $gray-400;
+      padding: 0.125em 0.25em;
+
+      color: inherit;
+
+      font-family: $font-family-fourth;
+      font-size: 0.75rem;
+
+      &.active {
+          color: $white;
+          background-color: $secondary;
+      }
+  }
+
+  &__name + &__name {
+      margin: 0.25em;
+  }
+}
+
 // Media Breakpoint up LG
 @include bootstrap.media-breakpoint-up(lg) {
   .py-lg-6rem {
@@ -146,6 +173,23 @@ body {
   }
 
   .w-lg-auto {
+    width: auto !important;
+  }
+}
+
+// Media Breakpoint up MD
+@include bootstrap.media-breakpoint-up(md) {
+  .py-md-6rem {
+    padding-top: 6rem !important;
+    padding-bottom: 6rem !important;
+  }
+
+  .px-md-6rem {
+    padding-right: 6rem !important;
+    padding-left: 6rem !important;
+  }
+
+  .w-md-auto {
     width: auto !important;
   }
 }

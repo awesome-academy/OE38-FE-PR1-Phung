@@ -1,0 +1,203 @@
+@use '../base/variable' as *;
+@use '../abstract/mixin' as mixin;
+@use '../base/custom' as bootstrap;
+
+.banner-product {
+  width: 100%;
+  padding-top: 26.31574%;
+
+  background-color: $gray-300;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.wrapper {
+  padding: 2.625rem 0;
+  color: $gray-600;
+}
+
+.sidebar {
+  font-size: 0.875rem;
+}
+
+.my-list-group {
+  list-style-type: none;
+  padding: 0;
+
+  &__item {
+    color: $gray-700;
+    
+    &.active {
+      color: $secondary;
+    }
+  }
+
+  &__link {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.categoryHorizontal {
+  font-family: $font-family-fourth;
+
+  &__list {
+    list-style-type: none;
+
+    display: flex;
+    width: 100%;
+    padding-left: 0;
+    overflow-x: scroll;
+  }
+  
+  &__item {
+    border: 1px solid $gray-400;
+    border-radius: 0.25rem;
+    margin-right: 0.5rem;
+    
+    white-space: nowrap;
+
+    &:hover {
+      border-color: $secondary;
+    }
+
+    &.active {
+      border-color: $secondary;
+    }
+    
+    &.active .categoryHorizontal__link {
+      color: $secondary;
+      text-decoration: underline;
+    }
+  }
+  
+  &__link {
+    display: block;
+    padding: 0.375rem 0.75rem;
+    
+    color: $gray-700;
+
+    font-size: 0.875rem;
+    text-decoration: none;
+  }
+}
+
+.products {
+    
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    
+    border-bottom: 1px solid $gray-300;
+  }
+  
+  &__director {
+    display: flex;
+    
+    &-label {
+        cursor: pointer;
+        margin-right: 0.75rem;
+        
+        &.active{
+            color: $secondary;
+        }
+    }
+  }
+  
+  &__list {
+    padding: 2.875rem 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  &__item {
+    --gutter: 0.5rem;
+    flex-basis: calc(33.33333% - var(--gutter) * 2 );
+    margin-bottom: 1rem;
+    
+    @include bootstrap.media-breakpoint-down(lg) {
+      flex-basis: calc(50% - var(--gutter) * 2 );
+    }
+
+    @include bootstrap.media-breakpoint-down(md) {
+      flex-basis: calc(100% - var(--gutter) * 2 );
+    }
+  }
+
+  input#plcolumn:checked ~ &__list {
+    
+    .products__item {
+      flex-basis: 100%;
+    }
+    
+    .product-card {
+      flex-direction: row;
+      text-align: left;
+
+      @include bootstrap.media-breakpoint-down(md) {
+        flex-direction: column;
+      }
+    }
+    
+    .product-card__img-box {
+      flex: 1;
+
+      @include bootstrap.media-breakpoint-down(lg) {
+        flex: 3;
+      }
+    }
+    
+    .product-card__body {
+      padding: 1rem;
+      text-align: left;
+      flex: 3;
+
+      @include bootstrap.media-breakpoint-down(xl) {
+        flex: 2;
+      }
+
+      @include bootstrap.media-breakpoint-down(lg) {
+        flex: 5;
+      }
+    }
+
+    .product-card__title {
+      font-size: 1.5625rem;
+
+      @include bootstrap.media-breakpoint-down(lg) {
+        font-size: 1.35rem;
+      }
+
+      @include bootstrap.media-breakpoint-down(md) {
+        font-size: 1.25rem;
+      }
+    }
+    
+    .product-card__price {
+      font-size: 2.125rem;
+
+      @include bootstrap.media-breakpoint-down(lg) {
+        font-size: 1.8rem;
+      }
+
+      @include bootstrap.media-breakpoint-down(md) {
+        font-size: 1.3125rem;
+      }
+    }
+
+    .product-card__desc {
+      display: block;
+    }
+
+    .product-card__personal {
+      display: none;
+    }
+
+    .product-card__personal-column {
+      display: inline-block;
+    }
+  }
+}
