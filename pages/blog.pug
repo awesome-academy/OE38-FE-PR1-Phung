@@ -1,0 +1,31 @@
+extends templates/layout
+
+block title
+  title Blog - Wine House
+
+block main
+  div.py-4
+    div.container
+      +breadcrumbPage({name: 'Trang chủ', link: '/'}, {name: 'Blog', link: '/blog.html'})
+  .wrap
+    .container
+      .row.flex-lg-row-reverse
+        .col-lg-9
+          main
+            //- Post 
+            +post(dtPost.title, dtPost.author, dtPost.time, dtPost.numberOfComment, dtPost.text, dtPost.imageCard)
+            //- Form Comments
+            +formResponPost('Đóng góp ý kiến', 3, '#')
+            //- Comments 
+            +commentBlog('Bình luận', dtCommentsBlog, [{text: 1, link: '#'}, {text: 2, link: '#'}, {text: 3, link: '#'}, {text: 4, link: '#'}])
+        .col-lg-3
+          aside(class='sidebar-blog')
+            .section-heading.mb-3
+              h2.text-heading--left.fs-3 Blog
+              img(src='/assets/image/Image Rudu/titleleft-dark.png' alt='arrow left image')
+            //- Post New 
+            +postNew('Bài viết mới nhất', dtBlogNew)
+            //- Blog Tag
+            +blogTag('Blog Tab', dtBlogTagLIst, 'dongho')
+            //- Lastest Video
+            +videoBanner('LATEST VIDEO')

@@ -1,0 +1,106 @@
+//- Mixin Post New 
+mixin postNew(title, list)
+  div(class='post-new mb-4')
+    h3(class='sidebar-blog__title mb-3') #{ title }
+    div(class='post-list')
+      each item in list
+        a(href='#' class='post-card')
+          div(class='post-card__image-box')
+            div(class='post-card__image' style=`background-image: url('${ item.imageCard }')`)
+          div(class='post-card__body')
+            h4(class='post-card__title') #{ item.title }
+            time(class='post-card__time') 
+              i(class='far fa-calendar-alt')
+              | #{ item.time }
+//- Mixin Blog Tag 
+mixin blogTag(title, list , key)
+  .tag-blog
+    h3.sidebar-blog__title.mb-4 #{ title }
+    div(class='tag-blog__list')
+      each item in list
+        if item.active === key
+          a(href=`${ item.urlTag }` class='tag-blog__item active') #{ item.title }
+        else
+          a(href=`${ item.urlTag }` class='tag-blog__item') #{ item.title }
+//- Mixin Lastest Video
+mixin videoBanner(title)
+  div(class='latest-video')
+    h3(class='sidebar__title mb-4') #{ title }
+    iframe(src='https://www.youtube.com/embed/qraPm7OwtVA' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen style='width: 100%; height: auto;')
+
+//- Mixin Post 
+mixin post(title, author, time, numberOfComment, desc, imageUrl)
+  section.post.pb-5
+    img(src=`${ imageUrl }` alt='wine image' class='img-fluid w-100')
+    h1.post__title #{ title }
+    p.post__info #{ author } | 
+      time(datetime=`#{ time } `) #{ time }  | 
+      | #{ numberOfComment } bình luận
+    p.post__paragraph #{ desc }
+
+//- Mixin Form Responsive Post 
+mixin formResponPost(title, action, id)
+  section.pt-5.pb-4(id='formComments')
+    h3.comments__title.mb-4 #{ title }
+    form(action=`${ action }`)
+      input(type='hidden', name='postId' value=`${ id }`)
+      //- Name     
+      div(class='mb-3 row')
+        label(for='fname' class='col-md-1 col-sm-2 col-form-label') Tên
+          span.text-danger *
+        div.col-md-11.col-sm-10
+          input#fname(type='text', name='name' class='form-control' required)  
+      //- Mail 
+      div(class='mb-3 row' )
+        label(for='femail'  class='col-md-1 col-sm-2 col-form-label') Email
+          span.text-danger *
+        div.col-md-11.col-sm-10
+          input#femail(type='text', name='email' class='form-control' required)  
+      //- Comments 
+      div(class='mb-3 row')
+        label(for='comments'  class='col-md-1 col-sm-2 col-form-label') Ý kiến
+          span.text-danger *
+        div.col-md-11.col-sm-10
+          textarea#fcomments(name='comments', cols='30', rows='10' class='form-control' required)
+      //- Button 
+      div(class='mb-3 row')
+        .col-md-1.col-sm-2
+        .col-md-11.col-sm-10
+          button(class='btn btn-gray text-dark text-uppercase') Gửi ý kiến
+
+//- Mixin Comment Blog 
+mixin commentBlog(title, comments, pagination, numberActive = 1)
+  section.comments.pt-3
+    h3.comments__title.mb-4 Bình luận
+      | (#{ comments ? comments.length : 0})
+    .comments__list.mb-5
+      each comment in comments ? comments : []
+        .comment-card.card
+          .card-header.rounded.fst-italic
+            span.text-nowrap Bình luận bởi #{ comment.author }
+            span.mx-3 |
+            span.text-nowrap #{ comment.time }
+            a(href='#formComments' class='float-end') Trả lời
+          .card-body.pb-5.text-muted
+            p(class='card-text') #{ comment.text }
+    +paginationComments(pagination, numberActive)
+//- Mixin Pagination Comments
+mixin paginationComments(pagination, numberActive)
+  nav(aria-label='Page navigation comments' class='d-flex justify-content-center float-lg-end')
+    ul(class='pagination')
+      //- Prev 
+      li(class='page-item')
+        a(class='btn btn-primary px-3 text-white rounded-0' href='#' aria-label='Previous')
+          span(aria-hidden='true') &laquo;
+      //- Number Pagination 
+      each item in pagination ? pagination : []
+        if item.text == numberActive
+          li(class='page-item active')
+            a(class='page-link px-3' href=`${ item.link }`) #{ item.text }
+        else
+          li(class='page-item')
+            a(class='page-link px-3' href=`${ item.link }`) #{ item.text }
+      //- Next 
+      li(class='page-item')
+        a(class='btn btn-primary px-3 text-white rounded-0' href='#' aria-label='Next')
+          span(aria-hidden='true') &raquo;
