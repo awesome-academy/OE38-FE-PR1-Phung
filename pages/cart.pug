@@ -1,0 +1,18 @@
+extends templates/layout
+
+block title
+  title Giỏ hàng - Wine House
+
+block main
+  div.py-4
+    div.container
+      +breadcrumbPage({name: "Trang chủ", link: "#"}, {name: "Giỏ hàng", link: "#"})
+  main
+    .container
+      .row.mb-4
+        .col
+            h1.text-heading--left Giỏ hàng
+            img(src="/assets/image/Image Rudu/titleleft-dark.png")
+      .row.mb-5
+        .col
+          +cartTable(productInCart)
