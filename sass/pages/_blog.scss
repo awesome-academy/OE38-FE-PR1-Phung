@@ -1,0 +1,124 @@
+@use '../base/variable' as *;
+@use '../abstract/mixin' as mixin;
+@use '../base/custom' as bootstrap;
+
+.sidebar-blog {
+  color: $gray-700;
+  font-family: $font-family-third;
+
+  &__title {
+    color: inherit;
+    text-transform: uppercase;
+    font-size: 1.125rem;
+  };
+  
+}
+
+.post-new {
+
+}
+
+.post-card {
+  display: flex;
+  margin-bottom: 1.5rem;
+  text-decoration: none;
+  
+  &__image-box {
+    flex-basis: 25%;
+  }
+
+  &__image {
+    width: 100%;
+    padding-top: 75%;
+
+    background-color: $gray-300;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  &__body {
+    flex-basis: 75%;
+    padding: 0 0.5rem;
+  }
+
+  &__title {
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    font-weight: map-get($map: $font-weight, $key: regular);
+    margin-bottom: 0.125rem;
+  }
+
+  &__time {
+    color: $gray-500;
+    font-size: 0.75rem;
+  }
+}
+
+.tag-blog {
+  margin-bottom: 1.5rem;
+
+  &__list {
+  
+  }
+  
+  &__item {
+    display: inline-block;
+    padding: 0.25rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.25rem;
+    
+    color: $gray-700;
+    background-color: $gray-300;
+    
+    font-size: 0.75rem;
+    text-decoration: none;
+    cursor: pointer;
+    
+    &.active {
+      color: $white;
+      background-color: $secondary;
+    }
+  }
+}
+
+.latest-video {
+
+}
+
+.post {
+
+  &__title {
+    margin-top: 3rem;
+    color: $gray-800;
+    text-transform: uppercase;
+    font-size: 1.875rem;
+  }
+
+  &__info {
+    color: $gray-500;
+    font-size: 1.3125rem;
+  }
+
+  &__paragraph {
+    color: $gray-600;
+    font-size: 1.125rem;
+  }
+}
+
+.comments {
+  
+  &__title {
+    font-size: 1.175rem;
+    text-transform: uppercase;
+  }
+  
+  &__list {
+    color: $gray-700;
+  }
+
+  a {
+    color: inherit;
+  }
+}
