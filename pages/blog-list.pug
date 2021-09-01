@@ -1,0 +1,15 @@
+extends templates/layout
+
+block title
+  title Blog - Wine House
+
+block main
+  div.py-4
+    div.container
+      +breadcrumbPage({name: 'Trang chủ', link: '/'}, {name: 'Blog', link: '#'})
+  main
+    .container
+      .row.mb-4
+        each item in dtBlogList
+          .col-md-6.col-lg-4.mb-3
+            +blogCard(item.title, item.author, item.time, item.numberOfComment, item.text, item.imageCard, item.linkPost)
